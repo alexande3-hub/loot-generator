@@ -19,6 +19,11 @@ public class LootGenerator {
             return mon;
         }
     
+        /**
+         * 
+         * @param TC the 
+         * @return
+         */
         public static int whereTreasureClass(String TC) {
             Scanner s = new Scanner("data/large/TreasureClassEx.txt");
             for (int i = 0; i < 68; i++) {
@@ -31,7 +36,12 @@ public class LootGenerator {
             s.close();
             return 0;
         }
-            
+        
+        /**
+         * Determines the base item the monster drops.
+         * @param TC the starting TC representation we use to find the final item.
+         * @return the string representing the final generated item from TC.
+         */
         public static String fetchTreasureClass(String TC) {
             Scanner s = new Scanner("data/large/TreasureClassEx.txt");
             Random rand = new Random();
@@ -48,7 +58,13 @@ public class LootGenerator {
                 return TC;
             }
         }
-            
+        
+        /**
+         * Returns an array that includes armor and its armor.txt data.
+         * @param armor the armor we use to find the matching entry in armor.txt.
+         * @return an array representing the data in armor.txt that matches
+         * with the given armor.
+         */
         public static String[] generateBaseItem(String armor) {
             Scanner s = new Scanner("data/large/armor.txt");
             for (int i = 0; i < 202; i++) {
@@ -61,7 +77,11 @@ public class LootGenerator {
             s.close();
             return null;
         }
-                            
+        
+        /**
+         * Generates base statistics for a given piece of armor.
+         * @param armor the armor we generate the defense for
+         */
         public static void generateBaseStats(String armor) {
             Random rand = new Random();
             String[] armorArray = generateBaseItem(armor);
@@ -69,6 +89,10 @@ public class LootGenerator {
             System.out.println("Defense: " + randInt);
         }
     
+        /**
+         * Generates a random prefix for an item.
+         * @return an array representing the prefix and its info.
+         */
         public static String[] generatePrefix() {
             Scanner s = new Scanner("data/large/MagicPrefix.txt");
             Random rand = new Random();
@@ -81,6 +105,10 @@ public class LootGenerator {
             return pre;
         }
     
+        /**
+         * Generates a random suffix for an item.
+         * @return an array representing the suffix and its info.
+         */
         public static String[] generateSuffix() {
             Scanner s = new Scanner("data/large/MagicSuffix.txt");
             Random rand = new Random();
@@ -93,6 +121,13 @@ public class LootGenerator {
             return suf;
         }
     
+        /**
+         * 
+         * Prints the complete affix info for the given item,
+         * along with additional info for the prefix and suffix.
+         * @param item the item we are generating the prefix/suffix for.
+         * 
+         */
         public static void generateAffix(String item) {
             Random rand = new Random();
             String prefix = "";
