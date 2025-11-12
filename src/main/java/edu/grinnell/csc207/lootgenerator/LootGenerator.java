@@ -95,9 +95,32 @@ public class LootGenerator {
 
     public void generateAffix(String item) {
         Random rand = new Random();
+        String prefix = "";
+        int value1 = -1;
+        String stat1 = "";
+        String suffix = "";
+        int value2 = -1;
+        String stat2 = "";
         int randInt = rand.nextInt(0, 2);
         if (randInt == 1) {
             String[] prefixArray = generatePrefix();
+            prefix = prefixArray[0];
+            stat1 = prefixArray[1];
+            value1 = rand.nextInt(Integer.parseInt(prefixArray[1]), Integer.parseInt(prefixArray[2]));
+        }
+        int randInt2 = rand.nextInt(0, 2);
+        if (randInt2 == 1) {
+            String[] suffixArray = generateSuffix();
+            suffix = suffixArray[0];
+            stat2 = suffixArray[1];
+            value2 = rand.nextInt(Integer.parseInt(suffixArray[1]), Integer.parseInt(suffixArray[2]));
+        }
+        System.out.println(prefix + " " + item + " " + suffix);
+        if (randInt == 1) {
+            System.out.println(value1 + " " + stat1);
+        }
+        if (randInt2 == 1) {
+            System.out.println(value2 + " " + stat2);
         }
     }
     
