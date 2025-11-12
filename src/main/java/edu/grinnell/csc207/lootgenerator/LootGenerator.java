@@ -49,91 +49,99 @@ public class LootGenerator {
             }
         }
             
-                public static String[] generateBaseItem(String armor) {
-                                    Scanner s = new Scanner("data/large/armor.txt");
-                                    for (int i = 0; i < 202; i++) {
-                                        String[] armorArray = s.nextLine().split("\t");
-                                        if (armorArray[0].equals(armor)) {
-                                            s.close();
-                                            return armorArray;
-                                        }
-                                    }
-                                    s.close();
-                                    return null;
-                                }
+        public static String[] generateBaseItem(String armor) {
+            Scanner s = new Scanner("data/large/armor.txt");
+            for (int i = 0; i < 202; i++) {
+                String[] armorArray = s.nextLine().split("\t");
+                if (armorArray[0].equals(armor)) {
+                    s.close();
+                    return armorArray;
+                }
+            }
+            s.close();
+            return null;
+        }
                             
-                                public static void generateBaseStats(String armor) {
-                                                    Random rand = new Random();
-                                                    String[] armorArray = generateBaseItem(armor);
-                                    int randInt = rand.nextInt(Integer.parseInt(armorArray[1]), Integer.parseInt(armorArray[2]));
-                                    System.out.println("Defense: " + randInt);
-                                }
-                            
-                                public static String[] generatePrefix() {
-                                                                    Scanner s = new Scanner("data/large/MagicPrefix.txt");
-                                                                    Random rand = new Random();
-                                                                    int randInt = rand.nextInt(1, 373);
-                                                                    for (int i = 1; i < randInt; i++) {
-                                                                        s.nextLine();
-                                                                    }
-                                                                    String[] pre = s.nextLine().split("\t");
-                                                                    s.close();
-                                                                    return pre;
-                                                                }
-                                                            
-                                                                public static String[] generateSuffix() {
-                                                                                                                                    Scanner s = new Scanner("data/large/MagicSuffix.txt");
-                                                                                                                                    Random rand = new Random();
-                                                                                                                                    int randInt = rand.nextInt(1, 387);
-                                                                                                                                    for (int i = 1; i < randInt; i++) {
-                                                                                                                                        s.nextLine();
-                                                                                                                                    }
-                                                                                                                                    String[] suf = s.nextLine().split("\t");
-                                                                                                                                    s.close();
-                                                                                                                                    return suf;
-                                                                                                                                }
-                                                                                                                            
-                                                                                                                                public static void generateAffix(String item) {
-                                                                                                                                                                    Random rand = new Random();
-                                                                                                                                                                    String prefix = "";
-                                                                                                                                                                    int value1 = -1;
-                                                                                                                                                                    String stat1 = "";
-                                                                                                                                                                    String suffix = "";
-                                                                                                                                                                    int value2 = -1;
-                                                                                                                                                                    String stat2 = "";
-                                                                                                                                                                    int randInt = rand.nextInt(0, 2);
-                                                                                                                                                                    if (randInt == 1) {
-                                                                                                                                                                        String[] prefixArray = generatePrefix();
-                                                                                                                                        prefix = prefixArray[0];
-                                                                                                                                        stat1 = prefixArray[1];
-                                                                                                                                        value1 = rand.nextInt(Integer.parseInt(prefixArray[1]), Integer.parseInt(prefixArray[2]));
-                                                                                                                                    }
-                                                                                                                                    int randInt2 = rand.nextInt(0, 2);
-                                                                                                                                    if (randInt2 == 1) {
-                                                                                                                                        String[] suffixArray = generateSuffix();
-                                                                        suffix = suffixArray[0];
-                                                                        stat2 = suffixArray[1];
-                                                                        value2 = rand.nextInt(Integer.parseInt(suffixArray[1]), Integer.parseInt(suffixArray[2]));
-                                                                    }
-                                                                    System.out.println(prefix + " " + item + " " + suffix);
-                                                                    if (randInt == 1) {
-                                                                        System.out.println(value1 + " " + stat1);
-                                                                    }
-                                                                    if (randInt2 == 1) {
-                                                                        System.out.println(value2 + " " + stat2);
-                                                                    }
-                                                                }
-                                                                
-                                                                public static void main(String[] args) {
-                                                                    System.out.println("This program kills monsters and generates loot!");
-                                                                    String[] mon = getMonster();
-                                                                    String monster = mon[0];
-                                                                    System.out.println("Fighting " + monster);
-                                                                    System.out.println("You have slain " + monster + "!");
-                                                                    System.out.println(monster + " dropped:");
-                                                                    System.out.println("");
-                                                                    System.out.println(fetchTreasureClass(mon[3]));
-                                                                    generateBaseStats(fetchTreasureClass(mon[3]));
-                                                                    generateAffix(fetchTreasureClass(mon[3]));
+        public static void generateBaseStats(String armor) {
+            Random rand = new Random();
+            String[] armorArray = generateBaseItem(armor);
+            int randInt = rand.nextInt(Integer.parseInt(armorArray[1]), Integer.parseInt(armorArray[2]));
+            System.out.println("Defense: " + randInt);
+        }
+    
+        public static String[] generatePrefix() {
+            Scanner s = new Scanner("data/large/MagicPrefix.txt");
+            Random rand = new Random();
+            int randInt = rand.nextInt(1, 373);
+            for (int i = 1; i < randInt; i++) {
+                s.nextLine();
+            }
+            String[] pre = s.nextLine().split("\t");
+            s.close();
+            return pre;
+        }
+    
+        public static String[] generateSuffix() {
+            Scanner s = new Scanner("data/large/MagicSuffix.txt");
+            Random rand = new Random();
+            int randInt = rand.nextInt(1, 387);
+            for (int i = 1; i < randInt; i++) {
+                s.nextLine();
+            }
+            String[] suf = s.nextLine().split("\t");
+            s.close();
+            return suf;
+        }
+    
+        public static void generateAffix(String item) {
+            Random rand = new Random();
+            String prefix = "";
+            int value1 = -1;
+            String stat1 = "";
+            String suffix = "";
+            int value2 = -1;
+            String stat2 = "";
+            int randInt = rand.nextInt(0, 2);
+            if (randInt == 1) {
+                String[] prefixArray = generatePrefix();
+                prefix = prefixArray[0] + " ";
+                stat1 = " " + prefixArray[1];
+                value1 = rand.nextInt(Integer.parseInt(prefixArray[1]), Integer.parseInt(prefixArray[2]));
+            }
+            int randInt2 = rand.nextInt(0, 2);
+            if (randInt2 == 1) {
+                String[] suffixArray = generateSuffix();
+                suffix = " " + suffixArray[0];
+                stat2 = " " + suffixArray[1];
+                value2 = rand.nextInt(Integer.parseInt(suffixArray[1]), Integer.parseInt(suffixArray[2]));
+            }
+            System.out.println(prefix + item + suffix);
+            generateBaseStats(item);
+            if (randInt == 1) {
+                System.out.println(value1 + stat1);
+            }
+            if (randInt2 == 1) {
+                System.out.println(value2 + stat2);
+            }
+        }
+        
+        public static void main(String[] args) {
+            Scanner s = new Scanner(System.in);
+            String input;
+            do {
+                String[] mon = getMonster();
+                String monster = mon[0];
+                System.out.println("Fighting " + monster);
+                System.out.println("You have slain " + monster + "!");
+                System.out.println(monster + " dropped:");
+                System.out.println("");
+                generateAffix(fetchTreasureClass(mon[3]));
+                do {
+                    System.out.print("Fight again [y/n]?");
+                    input = s.next();
+                } while (!(input.equals("Y") || input.equals("y") ||
+                           input.equals("N") || input.equals("n")));
+            } while (input.equals("Y") || input.equals("y"));
+            s.close();
     }
 }
