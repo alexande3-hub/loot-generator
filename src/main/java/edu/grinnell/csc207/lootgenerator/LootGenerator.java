@@ -163,14 +163,26 @@ public class LootGenerator {
                 String[] prefixArray = generatePrefix();
                 prefix = prefixArray[0] + " ";
                 stat1 = " " + prefixArray[1];
-                value1 = rand.nextInt(Integer.parseInt(prefixArray[1]), Integer.parseInt(prefixArray[2]));
+                int p1 = Integer.parseInt(prefixArray[2]);
+                int p2 = Integer.parseInt(prefixArray[3]);
+                if (p1 == p2) {
+                    value1 = p1;
+                } else {
+                    value1 = rand.nextInt(p1, p2);
+                }
             }
             int randInt2 = rand.nextInt(0, 2);
             if (randInt2 == 1) {
                 String[] suffixArray = generateSuffix();
                 suffix = " " + suffixArray[0];
                 stat2 = " " + suffixArray[1];
-                value2 = rand.nextInt(Integer.parseInt(suffixArray[1]), Integer.parseInt(suffixArray[2]));
+                int s1 = Integer.parseInt(suffixArray[2]);
+                int s2 = Integer.parseInt(suffixArray[3]);
+                if (s1 == s2) {
+                    value2 = s1;
+                } else {
+                    value2 = rand.nextInt(s1, s2);
+                }
             }
             System.out.println(prefix + item + suffix);
             generateBaseStats(item);
